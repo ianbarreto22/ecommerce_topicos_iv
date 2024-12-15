@@ -5,20 +5,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vcib.exchange.services.ExchangeService;
+import com.vcib.exchange.services.FailureService;
 
 @RestController
 public class ExchangeController {
+	
 	@Autowired
 	private ExchangeService exchangeService;
 	
-	private static double FAILURE_PROBABILITY = 0.1;
+	@Autowired
+	private FailureService failureService;
 	
 	@GetMapping("/exchange")
 	public double getExchangeRate() {
 		
-		if(Math.random() < FAILURE_PROBABILITY) {
-			System.exit(1);
-		}
+		failureService.simulateFailure();
 		
 		return exchangeService.getExchangeRate();
 	}
