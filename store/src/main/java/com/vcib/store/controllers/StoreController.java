@@ -1,8 +1,8 @@
 package com.vcib.store.controllers;
 
 import com.vcib.store.entities.Product;
+import com.vcib.store.services.FailureService;
 import com.vcib.store.services.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,14 +13,17 @@ import org.springframework.web.bind.annotation.RestController;
 public class StoreController {
 
     private final ProductService productService;
+    private final FailureService failureService;
 
-    @Autowired
-    public StoreController(ProductService productService) {
+    public StoreController(ProductService productService, FailureService failureService) {
         this.productService = productService;
+        this.failureService = failureService;
     }
 
     @GetMapping("/product")
     public ResponseEntity product(@RequestParam Long id) {
+
+        failureService.simulateOmissionFailure();
 
         Product product = productService.findById(id);
 
@@ -30,6 +33,8 @@ public class StoreController {
 
     @PostMapping("/sell")
     public String sell(@RequestParam Long id) {
+
+        failureService.simulateTimeFailure();
 
         String uniqueId = productService.sellProduct();
 
