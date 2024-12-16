@@ -11,4 +11,8 @@ GET http://localhost:8080/exchange
 
 ###
 
-POST http://localhost:8080/sell?id=2
+POST http://localhost:8080/sell?id=1
+
+###
+
+GET http://localhost:8080/product?id=9

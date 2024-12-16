@@ -10,7 +10,8 @@ public class FailureService {
 
     public void simulateOmissionFailure() {
         if(Math.random() < OMISSION_FAILURE_PROBABILITY) {
-            throw new RuntimeException("Simulating failure by omission");
+            while(true) {
+            }
         }
     }
 

@@ -21,7 +21,7 @@ public class StoreController {
     }
 
     @GetMapping("/product")
-    public ResponseEntity product(@RequestParam Long id) {
+    public ResponseEntity<Product> product(@RequestParam Long id) {
 
         failureService.simulateOmissionFailure();
 
