@@ -1,4 +1,4 @@
-package com.vcib.ecommerce.service;
+package com.vcib.ecommerce.services;
 
 import org.springframework.stereotype.Service;
 
