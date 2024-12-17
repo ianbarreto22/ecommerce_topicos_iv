@@ -15,4 +15,4 @@ POST http://localhost:8080/sell?id=1
 
 ###
 
-GET http://localhost:8080/product?id=9
+GET http://localhost:8080/product?id=10 
