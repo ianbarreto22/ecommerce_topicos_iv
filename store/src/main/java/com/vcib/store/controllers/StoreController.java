@@ -34,7 +34,7 @@ public class StoreController {
     @PostMapping("/sell")
     public String sell(@RequestParam Long id) {
 
-        failureService.simulateTimeFailure();
+        failureService.simulateErrorFailure();
 
         String uniqueId = productService.sellProduct();
 
