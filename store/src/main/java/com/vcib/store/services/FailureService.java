@@ -2,8 +2,6 @@ package com.vcib.store.services;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import javax.management.RuntimeErrorException;
-
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,14 +16,11 @@ public class FailureService {
     public void simulateOmissionFailure() {
         boolean inFailure = inFailureState.get();
 
-        if (inFailure) {
-            simulateUnresponsiveness();
-            return;
-        }
-
         if (Math.random() < OMISSION_FAILURE_PROBABILITY) {
             simulateUnresponsiveness();
         }
+
+        return;
     }
 
     public void simulateErrorFailure() {
