@@ -16,7 +16,7 @@ public class BuyController {
 	private BuyService buyService;
 
     @GetMapping("/buy")
-    public ResponseEntity<Product> buy(@RequestParam(name = "product") Long product,
+    public ResponseEntity<Double> buy(@RequestParam(name = "product") Long product,
                       @RequestParam(name = "user") Long user,
                       @RequestParam(name = "ft") boolean ft) {
     	

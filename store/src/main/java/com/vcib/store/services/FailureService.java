@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 public class FailureService {
     private static final double OMISSION_FAILURE_PROBABILITY = 0.2;
     private static final double ERROR_FAILURE_PROBABILITY = 0.1;
-    private static final long OMISSION_DURATION_MS = 60 * 1000;
+    private static final long OMISSION_DURATION_MS = 65 * 1000;
 	private static final long FAILURE_DURATION_MS = 5 * 1000;
 	private static AtomicBoolean inFailureState = new AtomicBoolean(false);
 
@@ -46,7 +46,7 @@ public class FailureService {
     }
 
     private void enterFailureState() {
-		inFailureState.set(true);;
+		inFailureState.set(true);
 		
 		new Thread(() -> {
 			try {
