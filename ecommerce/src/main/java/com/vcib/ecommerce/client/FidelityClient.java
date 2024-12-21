@@ -4,8 +4,8 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(name= "fidelity-service", url = "http://localhost:8080")
+//@FeignClient(url="http://localhost:8080", name="fidelity")
 public interface FidelityClient {
 	@PostMapping("/bonus")
-	void addBonus(@RequestParam("user") Long user, @RequestParam("bonus") Integer bonus);
+	public void addBonus(@RequestParam("user") Long user, @RequestParam("bonus") Integer bonus);
 }
