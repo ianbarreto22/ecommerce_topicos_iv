@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.vcib.ecommerce.entities.Product;
 
-@FeignClient(url = "http://localhost:8080", name="store")
+@FeignClient(url="${services.default.url}", name="store")
 public interface StoreClient {
 	
 	@GetMapping("/product")

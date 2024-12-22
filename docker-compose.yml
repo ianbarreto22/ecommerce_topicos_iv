@@ -1,5 +1,25 @@
 version: '3.8'
+
 services:
+  ecommerce-app:
+    image: ecommerce-app:latest
+    build:
+      context: ./ecommerce
+    ports:
+      - "9090:9090" # Porta da aplicação
+    environment:
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_PORT=5672
+      - SPRING_RABBITMQ_USERNAME=guest
+      - SPRING_RABBITMQ_PASSWORD=guest
+    depends_on:
+      - rabbitmq
+      - exchange-service
+      - store-service
+      - fidelity-service
+    networks:
+      - app-network
+
   exchange-service:
     image: exchange-service:latest
     build:
@@ -9,7 +29,7 @@ services:
     networks:
       - app-network
     expose:
-      - "8080"  
+      - "8080"
 
   fidelity-service:
     image: fidelity-service:latest
@@ -33,12 +53,23 @@ services:
     expose:
       - "8080"
 
-  nginx:
-    image: nginx:latest        
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro  
+  rabbitmq:
+    image: rabbitmq:4.0-management
     ports:
-      - "8080:80"                  
+      - "5672:5672" # Porta AMQP para comunicação com a aplicação
+      - "15672:15672" # Porta do painel de administração
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    networks:
+      - app-network
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "8080:80"
     networks:
       - app-network
 
