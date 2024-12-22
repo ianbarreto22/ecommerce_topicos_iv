@@ -9,27 +9,28 @@ import com.vcib.ecommerce.services.fidelity.FidelityService;
 @Service
 public class BuyService {
 	
-
 	private final ProductService productService;
-
 	private final ExchangeService exchangeService;
-	
-	@Autowired
-	private FidelityService fidelityService; 
+	private final SellService sellService;
+	private final FidelityService fidelityService; 
 
-	public BuyService(ProductService productService, ExchangeService exchangeService) {
-		this.productService = productService;
-		this.exchangeService = exchangeService;
-	}
+	public BuyService(ProductService productService, ExchangeService exchangeService, SellService sellService, FidelityService fidelityService) {
+			this.productService = productService;
+			this.exchangeService = exchangeService;
+      this.sellService = sellService;
+			this.fidelityService = fidelityService;
+    }
 
-    public Double buy(Long product, Long user, boolean ft) {
+    public String buy(Long productId, Long user, boolean ft) {
 
-		Product p1 = productService.getProductById(product, ft);
+			Product p1 = productService.getProductById(productId, ft);
 
-		double exchangeValue = exchangeService.getExchangeValue(ft);
-		
-		fidelityService.addBonus(user,(int) Math.round(p1.getPrice()), ft);
+			double exchangeValue = exchangeService.getExchangeValue(ft);
+			
+			fidelityService.addBonus(user,(int) Math.round(p1.getPrice()), ft);
 
-		return exchangeValue;
+			String transactionId = sellService.sellProduct(productId, ft);
+
+			return transactionId;
     }
 }

@@ -1,6 +1,8 @@
 package com.vcib.ecommerce.client;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,8 +13,8 @@ import com.vcib.ecommerce.entities.Product;
 public interface StoreClient {
 	
 	@GetMapping("/product")
-	public Product product(@RequestParam Long id);
+    Product product(@RequestParam Long id);
 	
 	@PostMapping("/sell")
-	public int sell(@RequestParam Integer id);
+    ResponseEntity<String> sell(@RequestParam Long id);
 }
