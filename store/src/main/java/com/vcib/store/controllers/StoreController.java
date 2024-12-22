@@ -22,7 +22,7 @@ public class StoreController {
 
     @GetMapping("/product")
     public ResponseEntity<Product> product(@RequestParam Long id) {
-
+        
         failureService.simulateOmissionFailure();
 
         Product product = productService.findById(id);

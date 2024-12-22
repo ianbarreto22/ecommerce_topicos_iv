@@ -9,7 +9,6 @@ import com.vcib.ecommerce.services.fidelity.FidelityService;
 @Service
 public class BuyService {
 	
-
 	private final ProductService productService;
 	private final ExchangeService exchangeService;
 	private final SellService sellService;

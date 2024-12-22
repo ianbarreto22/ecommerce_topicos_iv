@@ -14,7 +14,6 @@ public class FailureService {
 
 
     public void simulateOmissionFailure() {
-        boolean inFailure = inFailureState.get();
 
         if (Math.random() < OMISSION_FAILURE_PROBABILITY) {
             simulateUnresponsiveness();
