@@ -1,5 +1,7 @@
 # Ecommerce_topicos_iv
 
+Apresentação: https://www.youtube.com/watch?v=QcNNuUJioLg
+
 Este projeto foi feito para a disciplina Tópicos de Engenharia de Software IV - Tolerância a falhas em sistemas de sistema de software. Para aplicar os conceitos aprendidos na disciplina, desenvolvemos uma aplicação com arquitetura orientada a microsserviços em que foram implementados conceitos de retry, replicas, circuit breaker, entre outros. Abaixo está um diagrama da aplicação.
 
 ![Diagrama do Sistema](images/diagrama.png)
